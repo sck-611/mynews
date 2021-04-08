@@ -21,4 +21,4 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/edit', 'Admin\ProfileController@edit');
 }); 
 
-テスト追加しました。
+テストで追加しました。
