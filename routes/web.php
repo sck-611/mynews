@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/movie', function () {
+    return view('movie.create');
+});
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::get('news/create', 'Admin\NewsController@add');
@@ -22,7 +25,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::get('profile/edit', 'Admin\ProfileController@edit');
 }); 
+Route::post('movie', 'Admin\ProfileController@movieSave');
 
+Route::get("/saveMovie", "Admin\ProfileController@test");
+Route::get("/showMovie", "Admin\ProfileController@showMovie");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
