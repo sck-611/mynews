@@ -17,8 +17,5 @@
             {{ csrf_field() }}
             <input type="submit" value="送信！">
         </form>
-        <p>{{ $movie->title }}</p>
-        <p>{{ $movie->review }}</p>
-        <p>{{ $movie->stars }}</p>
     </body>
 </html>

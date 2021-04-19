@@ -18,6 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->string('review');
             $table->integer('stars');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

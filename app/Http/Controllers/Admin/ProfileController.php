@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Movie;
 
@@ -11,6 +12,9 @@ class ProfileController extends Controller
     //
     public function add()
     {
+        // $result1 = 100 + 100;
+        // $result2 = 100 + 200;
+        // dd($result1, $result2);
         return view('admin.profile.create');
     }
     
@@ -19,6 +23,7 @@ class ProfileController extends Controller
     public function movieSave(Request $request /* Requestはユーザからの通信を取得する色んな便利プロパティやメソッドが実装されたクラス */)
     {
         $movie = new Movie;
+        $movie->user_id = Auth::id();
         $movie->title = $request->title;
         $movie->review = $request->review;
         $movie->stars = $request->hogehoge;
@@ -29,11 +34,20 @@ class ProfileController extends Controller
     public function test()
     {
         $movie = new Movie;
-        $movie->title = "バニラスカイ";
-        $movie->review = "最高。傑作です。";
-        $movie->stars = 5;
+        
+        dd($movie);
+                //全く同じことをしている
+                // $movie->title = "バニラスカイ";
+                // $movie->review = "最高。傑作です。";
+                // $movie->stars = 5;
         $movie->save();
         return view('admin.profile.create');
+    }
+    
+    public function myreview()
+    {
+        
+        return view("movie.myreview", ["my_movies"=>Movie::where("user_id", Auth::id())->get()]);
     }
 
     public function showMovie()
