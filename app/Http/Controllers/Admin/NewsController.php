@@ -28,6 +28,7 @@ class NewsController extends Controller
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
             $news->image_path = basename($path);
+            dd($path,basename($path));
         } else {
             $news->image_path = null;
         }
@@ -45,18 +46,33 @@ class NewsController extends Controller
     }
 
 
-// 以下を追記
-  public function index(Request $request)
-  {
-      $cond_title = $request->cond_title;
-      if ($cond_title != '') {
-          // 検索されたら検索結果を取得する
-          $posts = News::where('title', $cond_title)->get();
-      } else {
-          // それ以外はすべてのニュースを取得する
-          $posts = News::all();
-      }
-      return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
-  }
+// // 以下を追記
+//   public function index(Request $request)
+//   {
+//       $cond_title = $request->cond_title;
+//       if ($cond_title != '') {
+//           // 検索されたら検索結果を取得する
+//           $posts = News::where('title', $cond_title)->get();
+//       } else {
+//           // それ以外はすべてのニュースを取得する
+//           $posts = News::all();
+//       }
+//       return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+//   }
+
+      //ここを追記
+    パブリック 関数 インデックス（リクエスト $リクエスト）
+    {{
+        $ cond_title = $要求- > cond_title。
+        if（$ cond_title！= ''）{
+            //
+            $ posts = News :: where（ 'title'、 $ cond_title）-> get（）;
+        } else {
+            //これはすべてのありますます
+            $投稿=ニュース::すべて（）;
+        }
+         ビューを返す（'admin.news.index'、[ 'posts' => $ posts、'cond_title' => $ cond_title ]）;
+    }
+
 
 }

@@ -9,14 +9,24 @@ use App\Movie;
 
 class ProfileController extends Controller
 {
-    //
     public function add()
     {
-        // $result1 = 100 + 100;
-        // $result2 = 100 + 200;
-        // dd($result1, $result2);
-        return view('admin.profile.create');
+        $movie->title = "バニラスカイ";
+        $movie->review = "最高。傑作です。";
+        $movie->star = 5;
+        $movie->save();
+        
     }
+    
+    
+    //
+    // public function add()
+    // {
+    //     // $result1 = 100 + 100;
+    //     // $result2 = 100 + 200;
+    //     // dd($result1, $result2);
+    //     return view('admin.profile.create');
+    // }
     
     
     
@@ -56,6 +66,7 @@ class ProfileController extends Controller
         $all_movies = Movie::all();
         $movies_searched_by_stars = Movie::where("stars",3)->get();
         return view('movie.show', ["test_message"=>"これはコントローラから渡されたメッセージです", 
+                           'my_movies' => Auth::user()->movies,
                            'test_movie'=>$movie_from_db, 
                            'movies'=>$all_movies,
                            'searched_movies' => $movies_searched_by_stars]);

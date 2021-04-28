@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
     Route::post('profile/edit', 'Admin\ProfileController@update');
 });
+Route::get("/showMovie", "Admin\ProfileController@showMovie");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

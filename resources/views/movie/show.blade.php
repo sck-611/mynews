@@ -9,6 +9,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
+        <h1>{{ Auth::user()->name }}が投稿した映画一覧<h1>
+        @foreach($my_movies as $movie)
+         <h3>{{ $movie->title }}</h3>
+         <p>{{ $movie->review }}</p>
+         <p>{{ $movie->stars }}</p>
+        @endforeach
         <h1>コントローラから渡した値を表示する</h2>
        {{ $test_message }}
         <p>{{ $test_movie->title }}</p>
